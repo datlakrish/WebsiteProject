@@ -86,17 +86,54 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.nav_camera) { Services(); }
-        else if (id == R.id.nav_gallery) { Pertnership();}
-        else if (id == R.id.nav_slideshow) { Blog(); }
-        else if (id == R.id.nav_manage) { Work();}
-        else if (id == R.id.nav_share) {
+        if (id == R.id.Home) {
+            Home();
+        }
+        if (id == R.id.nav_camera) {
+            AboutUS();
+        } else if (id == R.id.nav_gallery) {
+            Products();
+        } else if (id == R.id.nav_slideshow) {
+            Services();
+        } else if (id == R.id.nav_manage) {
+            ContactUs();
+        } else if (id == R.id.nav_share) {
         } else if (id == R.id.nav_send) {
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void Home() {
+
+        webView = findViewById(R.id.webView);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.loadUrl("http://vedamaerospace.com/index.html");
+        webView.setWebViewClient(new WebViewClient());
+        Web();
+    }
+
+    public void AboutUS() {
+
+        webView = findViewById(R.id.webView);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.loadUrl("http://vedamaerospace.com/about-us.html");
+        webView.setWebViewClient(new WebViewClient());
+        Web();
+    }
+
+    public void Products() {
+
+        webView = findViewById(R.id.webView);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.loadUrl("http://vedamaerospace.com/products.html");
+        webView.setWebViewClient(new WebViewClient());
+        Web();
     }
 
     public void Services() {
@@ -109,42 +146,21 @@ public class MainActivity extends AppCompatActivity
         Web();
     }
 
-    public void Pertnership() {
-
-        webView = findViewById(R.id.webView);
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webView.loadUrl("http://vedamaerospace.com/about-us.html");
-        webView.setWebViewClient(new WebViewClient());
-        Web();
-    }
-
-    public void Blog() {
-
-        webView = findViewById(R.id.webView);
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webView.loadUrl("http://vedamaerospace.com/products.html");
-        webView.setWebViewClient(new WebViewClient());
-        Web();
-    }
-
-    public void Work() {
+    public void ContactUs() {
 
 
         webView = findViewById(R.id.webView);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        webView.loadUrl("http://vedamaerospace.com/portfolio-three-column.html");
+        webView.loadUrl("http://vedamaerospace.com/contact.html");
         webView.setWebViewClient(new WebViewClient());
         Web();
     }
 
-    public void Web(){
+    public void Web() {
         webView.setWebViewClient(new WebViewClient() {
             @Override
-            public void onPageFinished(WebView view, String url)
-            {
+            public void onPageFinished(WebView view, String url) {
                 webView.loadUrl("javascript:(function() { " +
                         "var head = document.getElementsByTagName('header')[0];"
                         + "head.parentNode.removeChild(head);" +
@@ -171,18 +187,18 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
-    public class MyAppWebViewClient extends WebViewClient {
+//    public class MyAppWebViewClient extends WebViewClient {
+//
+//        @Override
+//        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//            if (Uri.parse(url).getHost().endsWith("http://vedamaerospace.com")) {
+//                return false;
+//            }
+//            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//            view.getContext().startActivity(intent);
+//            return true;
+//        }
 
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if (Uri.parse(url).getHost().endsWith("http://vedamaerospace.com")) {
-                return false;
-            }
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            view.getContext().startActivity(intent);
-            return true;
-        }
-    }
 
 
 
